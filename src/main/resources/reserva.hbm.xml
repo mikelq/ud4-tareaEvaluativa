@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<!--nombre clase                       nombre tabla        nombre bbdd-->
+    <class name="modelo.Reserva" table = "reserva" catalog="viajes">
+		<!--clave primaria-->
+        <id name="id" column="id">
+            <generator class="increment"></generator>
+        </id>
+		<!--resto de columnas-->
+        <property name="fechaReserva" type="timestamp" column="fechaReserva"/>
+        <property name="numeroPlazasReservadas" type="integer" column="numeroPlazasReservadas"/>
+		
+		<!--relacion entre viaje y conductor-->
+		<!--name="nombre atributo clase Viaje" class= "clase de la que recoge el id"
+			column="columna de la tabla viaje"-->
+		<many-to-one name="pasajero" class="modelo.Pasajero" column="pasajero_id"/>
+		<many-to-one name="viaje" class="modelo.Viaje" column="viaje_id"/>
+    </class>
+</hibernate-mapping>
